@@ -1,15 +1,20 @@
 <template>
   <div>
-    <a href="#" v-on:click="login">Strava Login</a>
+    <div v-if="isLoggedIn">
+      <a v-on:click="logout">Log out</a>
+    </div>
+    <a v-else href="#" v-on:click="login">Strava Login</a>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'Strava',
+  computed: mapGetters(['isLoggedIn']),
   methods: {
-    ...mapActions(['login']),
+    ...mapActions(['login', 'logout']),
   },
 };
 </script>
