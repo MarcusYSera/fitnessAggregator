@@ -1,8 +1,4 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex';
+import stravaAuth from './modules/stravaAuth';
 
-export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
-});
+export default createStore({ modules: { stravaAuth } });
