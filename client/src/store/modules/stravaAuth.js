@@ -34,7 +34,7 @@ const actions = {
     });
   },
   getAthleteActivities: ({ commit }, arr) => {
-    console.log(arr);
+    // console.log(arr);
     api
       .getActivities(arr[0], arr[1])
       .then(res => {

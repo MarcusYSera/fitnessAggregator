@@ -27,12 +27,16 @@ export default {
     );
   },
   async getActivities(token, id) {
-    const params = {
-      include_all_efforts: true,
-    };
-    return await axios.get(`${ROOT_URL}/activities/${id}`, {
-      params,
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    await axios
+      .get(`http://localhost:8000/strava/activities/${id}/${token}`)
+      .then(res => {
+        console.log('success');
+        console.log(res);
+      })
+      .catch(err => {
+        console.log('error');
+        console.log(err);
+      });
+    return;
   },
 };

@@ -3,7 +3,7 @@
     <div v-if="isLoggedIn">
       <a v-on:click="logout">Log out</a>
       <p>Welcome {{ firstName }} {{ idValue }}</p>
-      <button v-on:click="clicked">Click</button>
+      <!-- <button v-on:click="clicked">Click</button> -->
       <button v-on:click="getAthleteActivities([tokenValue, idValue])">
         Get Items
       </button>
@@ -21,9 +21,9 @@ export default {
   methods: {
     ...mapActions(['login', 'logout', 'getAthleteActivities']),
   },
-  clicked() {
-    console.log('clicked');
-  },
+  // clicked() {
+  //   console.log('clicked');
+  // },
 };
 </script>
 
