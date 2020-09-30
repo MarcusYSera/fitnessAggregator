@@ -26,4 +26,13 @@ export default {
       `${ROOT_URL}/oauth/token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&code=${code}&grant_type=authorization_code`
     );
   },
+  async getActivities(token, id) {
+    const params = {
+      include_all_efforts: true,
+    };
+    return await axios.get(`${ROOT_URL}/activities/${id}`, {
+      params,
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
 };
