@@ -5,7 +5,12 @@ const state = {
   token: window.localStorage.getItem('strava_token'),
   id: window.localStorage.getItem('strava_id'),
   firstName: window.localStorage.getItem('strava_firstName'),
-  activities: null,
+  // activities: JSON.parse(window.localStorage.getItem('strava_user_activities')),
+  activities: window.localStorage.getItem('strava_user_activities'),
+  // activitiesList: JSON.parse(
+  //   window.localStorage.getItem('strava_user_list_activities')
+  // ),
+  activitiesList: window.localStorage.getItem('strava_user_list_activities'),
 };
 
 const getters = {
@@ -13,6 +18,10 @@ const getters = {
   firstName: state => state.firstName,
   tokenValue: state => state.token,
   idValue: state => state.id,
+  // athleteActivities: state => JSON.parse(state.activities),
+  athleteActivities: state => state.activities,
+  // activitiesList: state => JSON.parse(state.activitiesList),
+  activitiesList: state => state.activitiesList,
 };
 
 const actions = {
@@ -33,21 +42,43 @@ const actions = {
       router.push('/strava');
     });
   },
-  getAthleteActivities: ({ commit }, arr) => {
-    // console.log(arr);
-    api
-      .getActivities(arr[0], arr[1])
+  // this is actually hitting the get athelete stats request
+  getAthleteStats: async ({ commit }, arr) => {
+    await api
+      .getAthleteStats(arr[0], arr[1])
       .then(res => {
-        console.log(res);
-        commit('setActivities', res);
+        // console.log(res);
+        let activities = {
+          rides: res.data.all_ride_totals.count,
+          runs: res.data.all_run_totals.count,
+          swims: res.data.all_swim_totals.count,
+        };
+        // console.log(activities);
+        commit('setActivities', activities);
+        window.localStorage.setItem(
+          'strava_user_activities',
+          JSON.stringify(activities)
+        );
       })
       .catch(err => {
         console.log(`error: ${err}`);
       });
   },
+  getListOfAthleteActivites: ({ commit }, token) => {
+    api.getAthleteActivitiesList(token).then(res => {
+      console.log(res.data);
+      commit('setActivitiesList', res.data);
+      window.localStorage.setItem(
+        'strava_user_list_activities',
+        JSON.stringify(res.data)
+      );
+    });
+  },
   logout: ({ commit }) => {
     commit('setToken', null);
-    window.localStorage.removeItem('strava_token');
+    // window.localStorage.removeItem('strava_token');
+    window.localStorage.clear();
+    router.push('/');
   },
 };
 
@@ -64,6 +95,15 @@ const mutations = {
   setActivities: (state, activities) => {
     state.activities = activities;
   },
+  // parseActivities: (state, activities) => {
+  //   state.activities = JSON.parse(activities);
+  // },
+  setActivitiesList: (state, activitiesList) => {
+    state.activitiesList = activitiesList;
+  },
+  // parseActivitiesList: (state, activitiesList) => {
+  //   state.activitiesList = JSON.parse(activitiesList);
+  // },
 };
 
 export default {
