@@ -1,33 +1,59 @@
 <template>
-  <div>
+  <div class="container">
     <div v-if="isLoggedIn">
-      <a v-on:click="logout">Log out</a>
+      <!-- <a v-on:click="logout">
+        <button>
+          Log out
+        </button>
+      </a> -->
       <p>Welcome {{ firstName }} {{ idValue }}</p>
-      <button v-on:click="getAthleteStats([this.tokenValue, this.idValue])">
-        Update List
-      </button>
     </div>
-    <a v-else href="#" v-on:click="login">Strava Login</a>
-    <div v-if="activitiesList">
-      <p v-for="(value, key) in activitiesList" v-bind:key="key.id">
+    <a v-else href="#" v-on:click="login">
+      <button>
+        Strava Login
+      </button>
+    </a>
+    <br />
+    <div v-if="athleteActivities">
+      <p v-for="(value, key) in athleteActivities" v-bind:key="key.id">
         {{ key }} : {{ value }}
       </p>
     </div>
+    <br />
     <div>
-      <button v-on:click="getListOfAthleteActivites(tokenValue)">
-        Get List of Activities
-      </button>
+      <p v-for="(value, key) in activitiesList" v-bind:key="key">
+        Activity Name: {{ value.name }}
+        <br />
+        Activity Type: {{ value.type }}
+        <br />
+        Activity Id: {{ value.id }}
+      </p>
     </div>
+    <Table></Table>
   </div>
 </template>
 
+<style scoped>
+div {
+  border: dotted black 1px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+</style>
+
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import Table from './Table';
 
 export default {
   name: 'Strava',
-  data: function() {
-    return { activitiesList: null };
+  components: {
+    Table,
   },
   computed: {
     ...mapGetters([
@@ -36,6 +62,7 @@ export default {
       'tokenValue',
       'idValue',
       'athleteActivities',
+      'activitiesList',
     ]),
   },
   methods: {
@@ -43,24 +70,15 @@ export default {
       'login',
       'logout',
       'getAthleteStats',
-      'getListOfAthleteActivites',
+      'getListOfAthleteActivities',
     ]),
   },
-  created() {
-    if (this.athleteActivities) {
-      console.log('created');
-      this.activitiesList = JSON.parse(this.athleteActivities);
+  async created() {
+    if (this.isLoggedIn === true) {
+      // reactivate after styling done
+      // await this.getAthleteStats([this.tokenValue, this.idValue]);
+      // await this.getListOfAthleteActivities(this.tokenValue);
     }
-    return this.activitiesList;
-  },
-  updated() {
-    console.log('updatedpdate');
-    if (this.athleteActivities) {
-      this.activitiesList = JSON.parse(this.athleteActivities);
-    }
-    return this.activitiesList;
   },
 };
 </script>
-
-<style scoped></style>

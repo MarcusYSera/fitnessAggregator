@@ -1,9 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <div>
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -16,4 +14,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+* {
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+</style>
