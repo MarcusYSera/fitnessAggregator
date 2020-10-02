@@ -29,7 +29,7 @@
         Activity Id: {{ value.id }}
       </p>
     </div>
-    <Table></Table>
+    <Table v-bind:propAthleteActivities="athleteActivities"></Table>
   </div>
 </template>
 
