@@ -1,12 +1,7 @@
 <template>
   <div class="container">
     <div v-if="isLoggedIn">
-      <!-- <a v-on:click="logout">
-        <button>
-          Log out
-        </button>
-      </a> -->
-      <p>Welcome {{ firstName }} {{ idValue }}</p>
+      <h1 class="welcome">Strava Stats for {{ firstName }}</h1>
     </div>
     <a v-else href="#" v-on:click="login">
       <button>
@@ -14,13 +9,11 @@
       </button>
     </a>
     <br />
-    <div v-if="athleteActivities">
-      <p v-for="(value, key) in athleteActivities" v-bind:key="key.id">
-        {{ key }} : {{ value }}
-      </p>
-    </div>
+    <AthleteActivityTable
+      v-bind:propsActivitiesList="activitiesList"
+    ></AthleteActivityTable>
     <br />
-    <div>
+    <!-- <div>
       <p v-for="(value, key) in activitiesList" v-bind:key="key">
         Activity Name: {{ value.name }}
         <br />
@@ -28,12 +21,17 @@
         <br />
         Activity Id: {{ value.id }}
       </p>
-    </div>
-    <Table v-bind:propAthleteActivities="athleteActivities"></Table>
+    </div> -->
+    <ActivityDescriptionTable
+      v-bind:propsActivitiesList="activitiesList"
+    ></ActivityDescriptionTable>
   </div>
 </template>
 
 <style scoped>
+.welcome {
+  text-align: center;
+}
 div {
   border: dotted black 1px;
 }
@@ -48,12 +46,14 @@ div {
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import Table from './Table';
+import AthleteActivityTable from './AthleteActivityTable';
+import ActivityDescriptionTable from './ActivityDescriptionTable';
 
 export default {
   name: 'Strava',
   components: {
-    Table,
+    AthleteActivityTable,
+    ActivityDescriptionTable,
   },
   computed: {
     ...mapGetters([
