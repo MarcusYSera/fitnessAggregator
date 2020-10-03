@@ -10,6 +10,7 @@
     </a>
     <br />
     <AthleteActivityTable
+      v-on:emitted-activity="emitAthleteActivityTable"
       v-bind:propsActivitiesList="activitiesList"
     ></AthleteActivityTable>
     <br />
@@ -24,25 +25,10 @@
     </div> -->
     <ActivityDescriptionTable
       v-bind:propsActivitiesList="activitiesList"
+      v-bind:propsActivityName="activityName"
     ></ActivityDescriptionTable>
   </div>
 </template>
-
-<style scoped>
-.welcome {
-  text-align: center;
-}
-div {
-  border: dotted black 1px;
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  max-width: 100vw;
-  max-height: 100vh;
-}
-</style>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
@@ -65,6 +51,9 @@ export default {
       'activitiesList',
     ]),
   },
+  data() {
+    return { activityName: null };
+  },
   methods: {
     ...mapActions([
       'login',
@@ -72,6 +61,9 @@ export default {
       'getAthleteStats',
       'getListOfAthleteActivities',
     ]),
+    emitAthleteActivityTable(key) {
+      this.activityName = key;
+    },
   },
   async created() {
     if (this.isLoggedIn === true) {
@@ -82,3 +74,19 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.welcome {
+  text-align: center;
+}
+div {
+  border: dotted black 1px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+</style>

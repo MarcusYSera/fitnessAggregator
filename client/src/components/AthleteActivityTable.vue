@@ -10,7 +10,7 @@
       v-bind:key="key.id"
       class="tableContainer twocolumns"
     >
-      <div class="item">{{ key }}</div>
+      <div class="item" v-on:click="onActivitySelect(key)">{{ key }}</div>
       <div class="item">{{ value }}</div>
     </div>
   </div>
@@ -21,6 +21,11 @@ export default {
   name: 'AthleteActivityTable',
   props: {
     propsActivitiesList: Object,
+  },
+  methods: {
+    onActivitySelect(key) {
+      this.$emit('emitted-activity', key);
+    },
   },
   computed: {
     totalActivityTypes() {
