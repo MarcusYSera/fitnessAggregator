@@ -48,7 +48,8 @@ export default {
           newArr.push(distance);
           let movingTime = this.formatTime(i['moving_time']);
           newArr.push(movingTime);
-          newArr.push(i['elapsed_time']);
+          let elapsedTime = this.formatTime(i['elapsed_time']);
+          newArr.push(elapsedTime);
           newArr.push(i['average_speed']);
         }
       }
