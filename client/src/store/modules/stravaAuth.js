@@ -29,6 +29,9 @@ const actions = {
   createToken: ({ commit }, code) => {
     // console.log(`createToken function within store: ${code}`);
     api.retrieveToken(code).then(res => {
+      console.log(res);
+      let now = Date.now();
+      console.log(now);
       let { athlete } = res.data;
       let { access_token } = res.data;
       commit('setId', res.data.athlete.id);
