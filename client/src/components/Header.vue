@@ -11,19 +11,17 @@
           Strava
         </button>
       </router-link>
-      <a v-on:click="logout">
-        <button>
-          Logout
-        </button>
-      </a>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'Header',
+  computed: {
+    ...mapGetters(['isLoggedIn']),
+  },
   methods: {
     ...mapActions(['logout']),
   },

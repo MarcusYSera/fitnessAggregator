@@ -1,9 +1,14 @@
 <template>
-  <div class="container">
-    <div v-if="isLoggedIn">
+  <div class="container column">
+    <div v-if="isLoggedIn" class="center container row">
       <h1 class="welcome">Strava Stats for {{ firstName }}</h1>
+      <a v-on:click="logout" v-if="isLoggedIn" class="button right">
+        <button>
+          Logout
+        </button>
+      </a>
     </div>
-    <a v-else href="#" v-on:click="login">
+    <a v-else href="#" v-on:click="login" class="button right">
       <button>
         Strava Login
       </button>
@@ -29,6 +34,33 @@
     ></ActivityDescriptionTable>
   </div>
 </template>
+
+<style scoped>
+div {
+  border: dotted black 1px;
+}
+.container {
+  display: flex;
+  padding: 10px;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+.column {
+  flex-direction: column;
+}
+.row {
+  flex-direction: row;
+}
+.center {
+  justify-content: center;
+}
+.right {
+  margin-left: auto;
+}
+.welcome {
+  margin-left: auto;
+}
+</style>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
@@ -74,19 +106,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.welcome {
-  text-align: center;
-}
-div {
-  border: dotted black 1px;
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  max-width: 100vw;
-  max-height: 100vh;
-}
-</style>
