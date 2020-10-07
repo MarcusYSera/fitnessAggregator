@@ -3,6 +3,7 @@ import router from '../../router';
 
 const state = {
   token: window.localStorage.getItem('strava_token'),
+  refreshToken: window.localStorage.getItem('strava_refresh_token'),
   id: window.localStorage.getItem('strava_id'),
   firstName: window.localStorage.getItem('strava_firstName'),
   // activities: null,
@@ -11,15 +12,18 @@ const state = {
   activitiesList: JSON.parse(
     window.localStorage.getItem('strava_user_list_activities')
   ),
+  expiresAt: window.localStorage.getItem('strava_expires_at'),
 };
 
 const getters = {
   isLoggedIn: state => !!state.token,
   firstName: state => state.firstName,
   tokenValue: state => state.token,
+  refreshTokenValue: state => state.refreshToken,
   idValue: state => state.id,
   athleteActivities: state => state.activities,
   activitiesList: state => state.activitiesList,
+  expiresAt: state => state.expiresAt,
 };
 
 const actions = {
@@ -30,16 +34,20 @@ const actions = {
     // console.log(`createToken function within store: ${code}`);
     api.retrieveToken(code).then(res => {
       console.log(res);
-      let now = Date.now();
-      console.log(now);
       let { athlete } = res.data;
       let { access_token } = res.data;
+      let { expires_at } = res.data;
+      let { refresh_token } = res.data;
+      commit('setExpiresAtToken', expires_at);
       commit('setId', res.data.athlete.id);
       commit('setToken', access_token);
+      commit('setRefreshToken', refresh_token);
       commit('setFirstName', athlete.firstname);
       window.localStorage.setItem('strava_token', access_token);
       window.localStorage.setItem('strava_id', athlete.id);
       window.localStorage.setItem('strava_firstName', athlete.firstname);
+      window.localStorage.setItem('strava_expires_at', expires_at);
+      window.localStorage.setItem('strava_refresh_token', refresh_token);
       router.push('/strava');
     });
   },
@@ -87,6 +95,9 @@ const mutations = {
   setToken: (state, token) => {
     state.token = token;
   },
+  setRefreshToken: (state, refreshToken) => {
+    state.refreshToken = refreshToken;
+  },
   setId: (state, id) => {
     state.id = id;
   },
@@ -105,6 +116,9 @@ const mutations = {
   // parseActivitiesList: (state, activitiesList) => {
   //   state.activitiesList = JSON.parse(activitiesList);
   // },
+  setExpiresAtToken: (state, expiresAt) => {
+    state.expiresAt = expiresAt;
+  },
 };
 
 export default {

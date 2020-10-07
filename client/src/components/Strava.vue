@@ -81,6 +81,7 @@ export default {
       'idValue',
       'athleteActivities',
       'activitiesList',
+      'expiresAt',
     ]),
   },
   data() {
@@ -98,10 +99,19 @@ export default {
     },
   },
   async created() {
+    let now = parseInt(
+      Date.now()
+        .toString()
+        .slice(0, 10)
+    );
+    let difference = this.expiresAt - now;
+    if (difference < 3600) {
+      console.log('need to refresh');
+    }
     if (this.isLoggedIn === true) {
       // reactivate after styling done
-      // await this.getAthleteStats([this.tokenValue, this.idValue]);
-      // await this.getListOfAthleteActivities(this.tokenValue);
+      await this.getAthleteStats([this.tokenValue, this.idValue]);
+      await this.getListOfAthleteActivities(this.tokenValue);
     }
   },
 };
