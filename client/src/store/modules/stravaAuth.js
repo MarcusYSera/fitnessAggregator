@@ -54,7 +54,7 @@ const actions = {
       });
   },
   refreshToken: async ({ commit }, refreshToken) => {
-    console.log(refreshToken);
+    // console.log(refreshToken);
     await api
       .retrieveTokenWithRefresh(refreshToken)
       .then(res => {
