@@ -28,6 +28,11 @@ export default {
       `${EXTERNAL_API_URL}/oauth/token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&code=${code}&grant_type=authorization_code`
     );
   },
+  retrieveTokenWithRefresh(refreshToken) {
+    return axios.post(
+      `${EXTERNAL_API_URL}/oauth/token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${refreshToken}`
+    );
+  },
   async getAthleteStats(token, id) {
     let response = await axios
       .get(`${PROXY_SERVER_URL}/strava/athlete/stats/${id}/${token}`)

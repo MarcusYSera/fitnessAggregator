@@ -15,7 +15,7 @@ module.exports = {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((answer) => {
-        console.log(answer.data);
+        // console.log(answer.data);
         res.send(answer.data);
       })
       .catch(next);
@@ -28,7 +28,7 @@ module.exports = {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((answer) => {
-        console.log(answer);
+        // console.log(answer);
         res.send(answer.data);
       })
       .catch(next);

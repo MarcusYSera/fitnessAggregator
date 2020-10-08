@@ -32,24 +32,49 @@ const actions = {
   },
   createToken: ({ commit }, code) => {
     // console.log(`createToken function within store: ${code}`);
-    api.retrieveToken(code).then(res => {
-      console.log(res);
-      let { athlete } = res.data;
-      let { access_token } = res.data;
-      let { expires_at } = res.data;
-      let { refresh_token } = res.data;
-      commit('setExpiresAtToken', expires_at);
-      commit('setId', res.data.athlete.id);
-      commit('setToken', access_token);
-      commit('setRefreshToken', refresh_token);
-      commit('setFirstName', athlete.firstname);
-      window.localStorage.setItem('strava_token', access_token);
-      window.localStorage.setItem('strava_id', athlete.id);
-      window.localStorage.setItem('strava_firstName', athlete.firstname);
-      window.localStorage.setItem('strava_expires_at', expires_at);
-      window.localStorage.setItem('strava_refresh_token', refresh_token);
-      router.push('/strava');
-    });
+    api
+      .retrieveToken(code)
+      .then(res => {
+        console.log(res);
+        let { athlete, access_token, expires_at, refresh_token } = res.data;
+        // commit({
+        //   type: 'setId',
+        //   athlete.id,
+        // });
+        commit('setExpiresAt', expires_at);
+        commit('setId', athlete.id);
+        commit('setToken', access_token);
+        commit('setRefreshToken', refresh_token);
+        commit('setFirstName', athlete.firstname);
+        window.localStorage.setItem('strava_token', access_token);
+        window.localStorage.setItem('strava_id', athlete.id);
+        window.localStorage.setItem('strava_firstName', athlete.firstname);
+        window.localStorage.setItem('strava_expires_at', expires_at);
+        window.localStorage.setItem('strava_refresh_token', refresh_token);
+        router.push('/strava');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  refreshToken: ({ commit }, refreshToken) => {
+    console.log(refreshToken);
+    api
+      .retrieveTokenWithRefresh(refreshToken)
+      .then(res => {
+        // console.log(res);
+        let { access_token, expires_at, refresh_token } = res.data;
+        commit('setToken', access_token);
+        commit('setRefreshToken', refresh_token);
+        commit('setExpiresAt', expires_at);
+        window.localStorage.setItem('strava_token', access_token);
+        window.localStorage.setItem('strava_expires_at', expires_at);
+        window.localStorage.setItem('strava_refresh_token', refresh_token);
+        router.push('/strava');
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   // this is actually hitting the get athelete stats request
   getAthleteStats: async ({ commit }, arr) => {
@@ -116,7 +141,7 @@ const mutations = {
   // parseActivitiesList: (state, activitiesList) => {
   //   state.activitiesList = JSON.parse(activitiesList);
   // },
-  setExpiresAtToken: (state, expiresAt) => {
+  setExpiresAt: (state, expiresAt) => {
     state.expiresAt = expiresAt;
   },
 };

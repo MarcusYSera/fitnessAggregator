@@ -13,6 +13,9 @@
         Strava Login
       </button>
     </a>
+    <!-- <a href="#" v-on:click="refreshToken(refreshTokenValue)">
+      <button>Refresh Button</button>
+    </a> -->
     <br />
     <AthleteActivityTable
       v-on:emitted-activity="emitAthleteActivityTable"
@@ -82,6 +85,7 @@ export default {
       'athleteActivities',
       'activitiesList',
       'expiresAt',
+      'refreshTokenValue',
     ]),
   },
   data() {
@@ -91,6 +95,7 @@ export default {
     ...mapActions([
       'login',
       'logout',
+      'refreshToken',
       'getAthleteStats',
       'getListOfAthleteActivities',
     ]),
@@ -104,9 +109,10 @@ export default {
         .toString()
         .slice(0, 10)
     );
-    let difference = this.expiresAt - now;
-    if (difference < 3600) {
+    // let difference = this.expiresAt - now;
+    if (this.expiresAt - now < 3600) {
       console.log('need to refresh');
+      await this.refreshToken(this.refreshTokenValue);
     }
     if (this.isLoggedIn === true) {
       // reactivate after styling done
