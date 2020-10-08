@@ -109,8 +109,10 @@ export default {
         .toString()
         .slice(0, 10)
     );
-    // let difference = this.expiresAt - now;
-    if (this.expiresAt - now < 3600) {
+    let difference = this.expiresAt - now;
+    console.log(difference);
+    console.log(`created: ${this.isLoggedIn}`);
+    if (this.expiresAt - now < 3600 && this.isLoggedIn === true) {
       console.log('need to refresh');
       await this.refreshToken(this.refreshTokenValue);
     }

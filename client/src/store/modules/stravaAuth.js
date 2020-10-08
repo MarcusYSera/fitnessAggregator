@@ -6,12 +6,12 @@ const state = {
   refreshToken: window.localStorage.getItem('strava_refresh_token'),
   id: window.localStorage.getItem('strava_id'),
   firstName: window.localStorage.getItem('strava_firstName'),
-  // activities: null,
-  activities: JSON.parse(window.localStorage.getItem('strava_user_activities')),
-  // activities: null,
-  activitiesList: JSON.parse(
-    window.localStorage.getItem('strava_user_list_activities')
-  ),
+  activities: null,
+  // activities: JSON.parse(window.localStorage.getItem('strava_user_activities')),
+  activitiesList: null,
+  // activitiesList: JSON.parse(
+  //   window.localStorage.getItem('strava_user_list_activities')
+  // ),
   expiresAt: window.localStorage.getItem('strava_expires_at'),
 };
 
@@ -35,16 +35,12 @@ const actions = {
     api
       .retrieveToken(code)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         let { athlete, access_token, expires_at, refresh_token } = res.data;
-        // commit({
-        //   type: 'setId',
-        //   athlete.id,
-        // });
-        commit('setExpiresAt', expires_at);
         commit('setId', athlete.id);
         commit('setToken', access_token);
         commit('setRefreshToken', refresh_token);
+        commit('setExpiresAt', expires_at);
         commit('setFirstName', athlete.firstname);
         window.localStorage.setItem('strava_token', access_token);
         window.localStorage.setItem('strava_id', athlete.id);
@@ -57,9 +53,9 @@ const actions = {
         console.log(err);
       });
   },
-  refreshToken: ({ commit }, refreshToken) => {
+  refreshToken: async ({ commit }, refreshToken) => {
     console.log(refreshToken);
-    api
+    await api
       .retrieveTokenWithRefresh(refreshToken)
       .then(res => {
         // console.log(res);
