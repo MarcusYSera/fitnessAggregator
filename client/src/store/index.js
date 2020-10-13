@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
-import stravaAuth from './modules/stravaAuth';
+import stravaDB from './modules/stravaDB';
+import postgresDB from './modules/postgresDB';
 
-export default createStore({ modules: { stravaAuth } });
+export default createStore({ modules: { stravaDB, postgresDB } });
