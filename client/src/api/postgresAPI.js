@@ -17,7 +17,7 @@ export default {
   },
   async storeIdToken() {
     let res = await axios
-      .post(`${POSTGRES_SERVER}/user`)
+      .post(`${POSTGRES_SERVER}/users`)
       .then(res => {
         return res;
       })
