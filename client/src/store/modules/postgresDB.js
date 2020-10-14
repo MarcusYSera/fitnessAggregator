@@ -3,10 +3,14 @@ import api from '../../api/postgresAPI';
 
 const state = {
   messages: null,
+  stravaRefreshToken: null,
+  placeholder: null,
 };
 
 const getters = {
   displayMessages: state => state.messages,
+  stravaRefreshToken: state => state.stravaRefreshToken,
+  placeholder: state => state.placeholder,
 };
 
 const actions = {
@@ -29,14 +33,26 @@ const actions = {
         console.log(err);
       });
   },
-  getRefreshToken: ({ commit, rootState }) => {
-    commit(`${rootState.stravaDB.refreshToken}`, 'hello');
+  getRefreshToken: ({ commit }) => {
+    api
+      .getStravaRefreshToken()
+      .then(res => {
+        console.log(res);
+        commit('setPlaceHolder', res);
+        // commit('setRefreshToken', res, { root: true });
+      })
+      .catch(err => {
+        alert(err);
+      });
   },
 };
 
 const mutations = {
   setMessagesMutation: (state, messages) => {
     state.messages = messages;
+  },
+  setPlaceHolder: (state, x) => {
+    state.placeholder = x;
   },
 };
 

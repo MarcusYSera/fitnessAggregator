@@ -29,4 +29,17 @@ export default {
       });
     return res;
   },
+  async getStravaRefreshToken() {
+    let res = await axios
+      .get(`${POSTGRES_SERVER}/users`)
+      .then(res => {
+        console.log('res from getStravaRefreshTokenroute');
+        console.log(res);
+        return res;
+      })
+      .catch(err => {
+        return err;
+      });
+    return res;
+  },
 };

@@ -6,6 +6,9 @@
       {{ value.name }} {{ value.message }}
     </div>
     <button v-on:click="sendIdToken">Send info to db</button>
+    <button v-on:click="getRefreshToken">
+      Change refresh token
+    </button>
   </div>
 </template>
 
@@ -15,7 +18,7 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'Home',
   computed: {
-    ...mapGetters(['displayMessages']),
+    ...mapGetters(['displayMessages', 'placeholder']),
   },
   methods: {
     ...mapActions(['getMessages', 'sendIdToken', 'getRefreshToken']),
