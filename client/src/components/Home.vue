@@ -18,7 +18,7 @@ export default {
     ...mapGetters(['displayMessages']),
   },
   methods: {
-    ...mapActions(['getMessages', 'sendIdToken']),
+    ...mapActions(['getMessages', 'sendIdToken', 'getRefreshToken']),
   },
 };
 </script>

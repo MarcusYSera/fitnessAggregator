@@ -15,9 +15,12 @@ export default {
       });
     return res;
   },
-  async storeIdToken() {
+  async storeIdToken(id, token) {
     let res = await axios
-      .post(`${POSTGRES_SERVER}/users`)
+      .post(`${POSTGRES_SERVER}/users`, {
+        stravaId: `${id}`,
+        refreshToken: `${token}`,
+      })
       .then(res => {
         return res;
       })

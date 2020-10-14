@@ -17,9 +17,10 @@ const actions = {
       commit('setMessagesMutation', messages);
     });
   },
-  sendIdToken: () => {
+  sendIdToken: ({ rootState }) => {
+    const { id, refreshToken } = rootState.stravaDB;
     api
-      .storeIdToken()
+      .storeIdToken(id, refreshToken)
       .then(res => {
         console.log(res);
         console.log('success from postgresDB/vuex');
@@ -27,6 +28,9 @@ const actions = {
       .catch(err => {
         console.log(err);
       });
+  },
+  getRefreshToken: ({ commit, rootState }) => {
+    commit(`${rootState.stravaDB.refreshToken}`, 'hello');
   },
 };
 
