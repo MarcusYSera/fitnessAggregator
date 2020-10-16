@@ -33,15 +33,16 @@ const actions = {
         console.log(err);
       });
   },
-  getRefreshToken: ({ commit }) => {
+  getRefreshToken: ({ commit }, id) => {
     api
-      .getStravaRefreshToken()
+      .getStravaRefreshToken(id)
       .then(res => {
         console.log(res);
         commit('setPlaceHolder', res);
         // commit('setRefreshToken', res, { root: true });
       })
       .catch(err => {
+        console.log(err);
         alert(err);
       });
   },

@@ -6,7 +6,7 @@
       {{ value.name }} {{ value.message }}
     </div>
     <button v-on:click="sendIdToken">Send info to db</button>
-    <button v-on:click="getRefreshToken">
+    <button v-on:click="getRefreshToken(idValue)">
       Change refresh token
     </button>
   </div>
@@ -14,14 +14,27 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import { gapiPromise } from '../api/gapi';
 
 export default {
   name: 'Home',
   computed: {
-    ...mapGetters(['displayMessages', 'placeholder']),
+    ...mapGetters(['displayMessages', 'placeholder', 'idValue']),
   },
   methods: {
     ...mapActions(['getMessages', 'sendIdToken', 'getRefreshToken']),
+  },
+  created() {
+    gapiPromise.then(() => {
+      const gapi = window.gapi;
+      if (!gapi) {
+        console.log('gapi failed to load');
+        return;
+      }
+      if (!gapi.auth) {
+        console.log('gapi loaded successfully, continue auth process');
+      }
+    });
   },
 };
 </script>

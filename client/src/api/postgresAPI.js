@@ -29,9 +29,9 @@ export default {
       });
     return res;
   },
-  async getStravaRefreshToken() {
+  async getStravaRefreshToken(id) {
     let res = await axios
-      .get(`${POSTGRES_SERVER}/users`)
+      .get(`${POSTGRES_SERVER}/users/${id}`)
       .then(res => {
         console.log('res from getStravaRefreshTokenroute');
         console.log(res);
