@@ -12,6 +12,8 @@
   </div>
 </template>
 
+<style scoped></style>
+
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { gapiPromise } from '../api/gapi';
@@ -38,5 +40,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>
