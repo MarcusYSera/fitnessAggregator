@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="grid-container">
     Home
     <button v-on:click="getMessages">Get Messages from postgres</button>
     <div v-for="(value, key) in displayMessages" v-bind:key="key.id">
@@ -9,10 +9,19 @@
     <button v-on:click="getRefreshToken(idValue)">
       Change refresh token
     </button>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore,
+      veritatis.
+    </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.grid-container {
+  display: grid;
+  grid-template-columns: 25vw;
+}
+</style>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';

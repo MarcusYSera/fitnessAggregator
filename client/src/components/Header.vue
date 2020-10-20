@@ -22,9 +22,6 @@
 .flex-item {
   margin: 10px;
 }
-.item-2 {
-  flex-direction: row-reverse;
-}
 </style>
 
 <script>
