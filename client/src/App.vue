@@ -23,13 +23,7 @@ export default {
 }
 .grid-container {
   display: grid;
-  /* grid-auto-columns: minmax(20px, auto); */
-  /* grid-auto-rows: minmax(50px, auto); */
-}
-.grid-item-1 {
-  grid-area: header;
-}
-.grid-item-2 {
-  grid-area: sidebar;
+  grid-template-rows: 50px;
+  border: 1px solid black;
 }
 </style>
