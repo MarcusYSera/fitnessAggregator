@@ -24,6 +24,6 @@ export default {
 .grid-container {
   display: grid;
   grid-template-rows: 50px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 </style>
