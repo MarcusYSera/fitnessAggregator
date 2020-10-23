@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-container">
+  <div class="grid-container-strava">
     <div v-if="isLoggedIn" class="nav item flex-container">
       <h1 class="item one">Strava Stats for {{ firstName }}</h1>
       <a v-on:click="logout" v-if="isLoggedIn" class="item two">
@@ -39,7 +39,7 @@
 </template>
 
 <style scoped>
-.grid-container {
+.grid-container-strava {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 0.25fr 1fr;

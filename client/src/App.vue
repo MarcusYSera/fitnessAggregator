@@ -13,7 +13,13 @@ export default {
   components: { Header },
 };
 </script>
-
+<style>
+/* Refactor later to account for media queries  */
+/* https://www.smashingmagazine.com/2016/05/fluid-typography/ */
+html {
+  font-size: 2vw;
+}
+</style>
 <style scoped>
 * {
   margin: 0;

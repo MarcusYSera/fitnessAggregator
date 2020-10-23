@@ -1,7 +1,13 @@
 <template>
-  <div class="tableContainer sixColumns" v-if="propsActivityName">
-    <div v-for="(value, key) in titleArray" v-bind:key="key" class="item title">
-      {{ value }}
+  <div class="grid-container-activity-desc-table" v-if="propsActivityName">
+    <div
+      v-for="(value, key) in titleArray"
+      v-bind:key="key"
+      class="item header"
+    >
+      <h4>
+        {{ value }}
+      </h4>
     </div>
     <div
       v-for="(value, key) in specifiedCategories"
@@ -88,7 +94,7 @@ export default {
       let formattedTime = Math.round((parseInt(time) / 60 / 60) * 100) / 100;
       // not accounting for seconds! When I have time, come back to solve
       if (formattedTime < 1) {
-        formattedTime = (60 * formattedTime).toString() + ' min';
+        formattedTime = (60 * formattedTime).toFixed(2).toString() + ' min';
       } else if (formattedTime > 1 && formattedTime % 1 != 0) {
         let minutes =
           (parseInt(formattedTime.toString().split('.')[1]) / 100) * 60;
@@ -103,27 +109,23 @@ export default {
 </script>
 
 <style scoped>
-.tableContainer {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+.grid-container-activity-desc-table {
+  display: grid;
+  height: 100%;
   width: 100%;
+  border: 1px solid black;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 5.1rem;
+  grid-auto-flow: row;
+  grid-auto-rows: 65px;
+  justify-items: center;
+  align-items: center;
+  overflow: scroll;
 }
-.title {
-  font-weight: 600;
+.item.header {
+  outline: 1px solid black;
 }
 .item {
-  border: 1px black solid;
-}
-.sevenColumns > .item {
-  width: 14.28%;
-}
-.fiveColumns > .item {
-  width: 20%;
-}
-.sixColumns > .item {
-  width: 16.66%;
+  text-align: center;
 }
 </style>

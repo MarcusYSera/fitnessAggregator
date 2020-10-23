@@ -86,7 +86,7 @@ export default {
 }
 .flex-container.row {
   flex-direction: row;
-  border: 1px solid black;
+  outline: 1px solid black;
 }
 .flex-container.column {
   flex-direction: column;
@@ -100,7 +100,7 @@ export default {
 .content > .item {
   text-align: center;
   flex: 1;
-  border: 1px solid black;
+  outline: 1px solid black;
   line-height: 3;
 }
 </style>
