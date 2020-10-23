@@ -1,21 +1,23 @@
 <template>
   <div>
     <!-- <div class="title">Totals</div> -->
-    <div class="flex-container header">
+    <div class="flex-container row header">
       <h4 class="header-one">Activitiy</h4>
       <h4 class="header-two">Total</h4>
     </div>
-    <div
-      class="flex-container"
-      v-on:click="onActivitySelect(key)"
-      v-for="(value, key) in totalActivityTypes"
-      v-bind:key="key.id"
-    >
-      <div class="item">
-        {{ key }}
-      </div>
-      <div class="item">
-        {{ value }}
+    <div class="flex-container column">
+      <div
+        class="flex-container row content"
+        v-on:click="onActivitySelect(key)"
+        v-for="(value, key) in totalActivityTypes"
+        v-bind:key="key.id"
+      >
+        <div class="item">
+          {{ key }}
+        </div>
+        <div class="item">
+          {{ value }}
+        </div>
       </div>
     </div>
   </div>
@@ -81,16 +83,24 @@ export default {
 }
 .flex-container {
   display: flex;
+}
+.flex-container.row {
   flex-direction: row;
+  border: 1px solid black;
+}
+.flex-container.column {
+  flex-direction: column;
+}
+.header {
+  justify-content: space-around;
+}
+.content {
   align-items: center;
 }
-.flex-container > .item {
-  flex: 1;
+.content > .item {
   text-align: center;
+  flex: 1;
   border: 1px solid black;
-}
-.flex-container.header {
-  justify-content: space-around;
-  border: 1px solid black;
+  line-height: 3;
 }
 </style>
