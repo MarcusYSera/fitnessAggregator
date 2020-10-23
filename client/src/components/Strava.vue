@@ -17,7 +17,7 @@
       <button>Refresh Button</button>
     </a> -->
     <AthleteActivityTable
-      class="table-one item"
+      class="table-one"
       v-on:emitted-activity="emitAthleteActivityTable"
       v-bind:propsActivitiesList="activitiesList"
     ></AthleteActivityTable>
@@ -31,7 +31,7 @@
       </p>
     </div> -->
     <ActivityDescriptionTable
-      class="table-two item"
+      class="table-two"
       v-bind:propsActivitiesList="activitiesList"
       v-bind:propsActivityName="activityName"
     ></ActivityDescriptionTable>
@@ -54,6 +54,7 @@
 }
 .table-one {
   grid-area: table-one;
+  width: 100%;
 }
 .table-two {
   grid-area: table-two;

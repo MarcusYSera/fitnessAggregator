@@ -1,17 +1,22 @@
 <template>
   <div>
-    <div class="grid-container-table">
-      <!-- <div class="title">Totals</div> -->
-      <h4 class="item">Activitiy</h4>
-      <h4 class="item">Total</h4>
+    <!-- <div class="title">Totals</div> -->
+    <div class="flex-container header">
+      <h4 class="header-one">Activitiy</h4>
+      <h4 class="header-two">Total</h4>
     </div>
     <div
+      class="flex-container"
+      v-on:click="onActivitySelect(key)"
       v-for="(value, key) in totalActivityTypes"
       v-bind:key="key.id"
-      class="tableContainer twocolumns"
     >
-      <div class="item" v-on:click="onActivitySelect(key)">{{ key }}</div>
-      <div class="item">{{ value }}</div>
+      <div class="item">
+        {{ key }}
+      </div>
+      <div class="item">
+        {{ value }}
+      </div>
     </div>
   </div>
 </template>
@@ -69,24 +74,23 @@ export default {
 <style scoped>
 .grid-container-table {
   display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 5vh;
+  justify-items: center;
 }
-.tableContainer {
+.flex-container {
   display: flex;
-  flex-wrap: wrap;
-  /* margin: 0 0 3em 0; */
-  margin: 0;
-  padding: 0;
+  flex-direction: row;
+  align-items: center;
+}
+.flex-container > .item {
+  flex: 1;
   text-align: center;
-  width: 50%;
+  border: 1px solid black;
 }
-.item {
-  border: 1px black solid;
-}
-
-.twocolumns > .item {
-  width: 50%;
-}
-.threecolumns > .item {
-  width: 33.33%;
+.flex-container.header {
+  justify-content: space-around;
+  border: 1px solid black;
 }
 </style>
