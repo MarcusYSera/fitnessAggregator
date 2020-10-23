@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="tableContainer twocolumns">
+    <div class="grid-container-table">
       <!-- <div class="title">Totals</div> -->
       <h4 class="item">Activitiy</h4>
       <h4 class="item">Total</h4>
@@ -67,6 +67,9 @@ export default {
 </script>
 
 <style scoped>
+.grid-container-table {
+  display: grid;
+}
 .tableContainer {
   display: flex;
   flex-wrap: wrap;

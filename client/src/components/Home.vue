@@ -33,14 +33,11 @@
 <style scoped>
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 20px;
-  border: 1px dotted black;
-  /* grid-column-start: 1; */
-}
-.item {
-  border: 1px dotted red;
+  justify-items: center;
+  align-items: center;
 }
 </style>
 

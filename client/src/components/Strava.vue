@@ -1,14 +1,14 @@
 <template>
-  <div class="container column">
-    <div v-if="isLoggedIn" class="center container row">
-      <h1 class="welcome">Strava Stats for {{ firstName }}</h1>
-      <a v-on:click="logout" v-if="isLoggedIn" class="button right">
+  <div class="grid-container">
+    <div v-if="isLoggedIn" class="nav item flex-container">
+      <h1 class="item one">Strava Stats for {{ firstName }}</h1>
+      <a v-on:click="logout" v-if="isLoggedIn" class="item two">
         <button>
           Logout
         </button>
       </a>
     </div>
-    <a v-else href="#" v-on:click="login" class="button right">
+    <a v-else href="#" v-on:click="login" class="nav item">
       <button>
         Strava Login
       </button>
@@ -16,12 +16,11 @@
     <!-- <a href="#" v-on:click="refreshToken(refreshTokenValue)">
       <button>Refresh Button</button>
     </a> -->
-    <br />
     <AthleteActivityTable
+      class="table-one item"
       v-on:emitted-activity="emitAthleteActivityTable"
       v-bind:propsActivitiesList="activitiesList"
     ></AthleteActivityTable>
-    <br />
     <!-- <div>
       <p v-for="(value, key) in activitiesList" v-bind:key="key">
         Activity Name: {{ value.name }}
@@ -32,6 +31,7 @@
       </p>
     </div> -->
     <ActivityDescriptionTable
+      class="table-two item"
       v-bind:propsActivitiesList="activitiesList"
       v-bind:propsActivityName="activityName"
     ></ActivityDescriptionTable>
@@ -39,29 +39,36 @@
 </template>
 
 <style scoped>
-div {
-  border: dotted black 1px;
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.25fr 1fr;
+  grid-template-areas:
+    'header header'
+    'table-one table-two';
+  justify-items: center;
+  align-items: center;
 }
-.container {
+.nav {
+  grid-area: header;
+}
+.table-one {
+  grid-area: table-one;
+}
+.table-two {
+  grid-area: table-two;
+}
+.flex-container {
+  width: 100%;
   display: flex;
-  padding: 10px;
-  max-width: 100vw;
-  max-height: 100vh;
-}
-.column {
-  flex-direction: column;
-}
-.row {
   flex-direction: row;
+  align-items: center;
 }
-.center {
-  justify-content: center;
-}
-.right {
+.item.one {
   margin-left: auto;
 }
-.welcome {
-  margin-left: auto;
+.item.two {
+  margin: 10px 10px 10px auto;
 }
 </style>
 
