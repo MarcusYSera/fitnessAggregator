@@ -115,15 +115,24 @@ export default {
   width: 100%;
   border: 1px solid black;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 5.1rem;
+  grid-template-rows: 3.5rem;
   grid-auto-flow: row;
-  grid-auto-rows: 65px;
+  /* grid-auto-rows: 65px; */
   justify-items: center;
   align-items: center;
   overflow: scroll;
 }
+.grid-container-activity-desc-table::-webkit-scrollbar {
+  display: none;
+}
 .item.header {
   outline: 1px solid black;
+  flex: 1;
+  /* height: 100%;
+  width: 100%; */
+}
+.header h4 {
+  margin: 0;
 }
 .item {
   text-align: center;
