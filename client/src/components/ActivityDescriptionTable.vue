@@ -5,9 +5,7 @@
       v-bind:key="key"
       class="item header"
     >
-      <h4>
-        {{ value }}
-      </h4>
+      {{ value }}
     </div>
     <div
       v-for="(value, key) in specifiedCategories"
@@ -113,28 +111,22 @@ export default {
   display: grid;
   height: 100%;
   width: 100%;
-  border: 1px solid black;
+  outline: 1px solid black;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 3.5rem;
+  grid-template-rows: 15%;
   grid-auto-flow: row;
-  /* grid-auto-rows: 65px; */
-  justify-items: center;
-  align-items: center;
-  overflow: scroll;
-}
-.grid-container-activity-desc-table::-webkit-scrollbar {
-  display: none;
+  grid-auto-rows: 16.67%;
+  overflow-y: scroll;
 }
 .item.header {
-  outline: 1px solid black;
-  flex: 1;
-  /* height: 100%;
-  width: 100%; */
-}
-.header h4 {
-  margin: 0;
+  font-weight: 600;
 }
 .item {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 1px solid black;
+  font-size: 0.8rem;
+  padding: 0.2rem;
 }
 </style>
