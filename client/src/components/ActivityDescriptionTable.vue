@@ -28,7 +28,8 @@ export default {
     return {
       titleArray: [
         'Name',
-        'Date / Time',
+        'Date',
+        'Time',
         'Distance (Miles)',
         'Moving Time (hr:min)',
         'Elapsed Time',
@@ -47,7 +48,9 @@ export default {
           let formattedDate = this.formatDate(date);
           let time = i['start_date_local'].split('T')[1].split('Z')[0];
           let formattedTime = this.formatDateTime(time);
-          newArr.push(`${formattedDate} ${formattedTime}`);
+          // newArr.push(`${formattedDate} ${formattedTime}`);
+          newArr.push(`${formattedDate}`);
+          newArr.push(`${formattedTime}`);
           let distance = this.formatDistance(i['distance']);
           newArr.push(distance);
           let movingTime = this.formatTime(i['moving_time']);
@@ -79,6 +82,9 @@ export default {
         formattedTime[0] = (parseInt(formattedTime[0]) - 12).toString();
         return formattedTime.join(':') + ' PM';
       } else {
+        if (parseInt(formattedTime) < 10) {
+          formattedTime[0] = formattedTime[0].split('')[1];
+        }
         return formattedTime.join(':') + ' AM';
       }
     },
@@ -92,7 +98,7 @@ export default {
       let formattedTime = Math.round((parseInt(time) / 60 / 60) * 100) / 100;
       // not accounting for seconds! When I have time, come back to solve
       if (formattedTime < 1) {
-        formattedTime = (60 * formattedTime).toFixed(2).toString() + ' min';
+        formattedTime = (60 * formattedTime).toFixed(0).toString() + ' min';
       } else if (formattedTime > 1 && formattedTime % 1 != 0) {
         let minutes =
           (parseInt(formattedTime.toString().split('.')[1]) / 100) * 60;
@@ -112,14 +118,15 @@ export default {
   height: 100%;
   width: 100%;
   outline: 1px solid black;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 15%;
-  grid-auto-flow: row;
+  /* grid-auto-flow: row; */
   grid-auto-rows: 16.67%;
   overflow-y: scroll;
 }
 .item.header {
   font-weight: 600;
+  font-size: 0.9rem;
 }
 .item {
   display: flex;
@@ -128,5 +135,6 @@ export default {
   outline: 1px solid black;
   font-size: 0.8rem;
   padding: 0.2rem;
+  text-align: center;
 }
 </style>

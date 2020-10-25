@@ -1,75 +1,72 @@
 <template>
-  <div class="grid-container-strava">
-    <div v-if="isLoggedIn" class="nav item flex-container">
-      <h1 class="item one">Strava Stats for {{ firstName }}</h1>
-      <a v-on:click="logout" v-if="isLoggedIn" class="item two">
-        <button>
-          Logout
-        </button>
-      </a>
+  <div>
+    <div v-if="isLoggedIn" class="grid-container-strava">
+      <div class="nav">
+        <a class="flex-container two">
+          <button v-on:click="logout">
+            Logout
+          </button>
+        </a>
+        <h1 class="flex-container one">Strava Stats for {{ firstName }}</h1>
+      </div>
+      <AthleteActivityTable
+        class="table-one"
+        v-on:emitted-activity="emitAthleteActivityTable"
+        v-bind:propsActivitiesList="activitiesList"
+      ></AthleteActivityTable>
+      <ActivityDescriptionTable
+        class="table-two"
+        v-bind:propsActivitiesList="activitiesList"
+        v-bind:propsActivityName="activityName"
+      ></ActivityDescriptionTable>
     </div>
-    <a v-else href="#" v-on:click="login" class="nav item">
-      <button>
-        Strava Login
-      </button>
-    </a>
-    <!-- <a href="#" v-on:click="refreshToken(refreshTokenValue)">
-      <button>Refresh Button</button>
-    </a> -->
-    <AthleteActivityTable
-      class="table-one"
-      v-on:emitted-activity="emitAthleteActivityTable"
-      v-bind:propsActivitiesList="activitiesList"
-    ></AthleteActivityTable>
-    <!-- <div>
-      <p v-for="(value, key) in activitiesList" v-bind:key="key">
-        Activity Name: {{ value.name }}
-        <br />
-        Activity Type: {{ value.type }}
-        <br />
-        Activity Id: {{ value.id }}
-      </p>
-    </div> -->
-    <ActivityDescriptionTable
-      class="table-two"
-      v-bind:propsActivitiesList="activitiesList"
-      v-bind:propsActivityName="activityName"
-    ></ActivityDescriptionTable>
+    <div v-else class="grid-container-strava">
+      <div class="nav">
+        <a class="flex-container two">
+          <button href="#" v-on:click="login">
+            Strava Login
+          </button>
+        </a>
+        <h2 class="flex-container three">Please Login to continue</h2>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .grid-container-strava {
   display: grid;
+  grid-gap: 2rem;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 0.25fr 1fr;
   grid-template-areas:
     'header header'
     'table-one table-two';
-  justify-items: center;
-  align-items: center;
+  padding: 10px;
 }
 .nav {
   grid-area: header;
 }
 .table-one {
   grid-area: table-one;
-  width: 100%;
 }
 .table-two {
   grid-area: table-two;
 }
+
 .flex-container {
-  width: 100%;
   display: flex;
-  flex-direction: row;
+}
+.flex-container.one {
+  justify-content: center;
   align-items: center;
 }
-.item.one {
-  margin-left: auto;
+.flex-container.two {
+  justify-content: flex-end;
+  align-content: center;
 }
-.item.two {
-  margin: 10px 10px 10px auto;
+.flex-container.three {
+  justify-content: center;
 }
 </style>
 
@@ -117,9 +114,9 @@ export default {
         .toString()
         .slice(0, 10)
     );
-    let difference = this.expiresAt - now;
-    console.log(difference);
-    console.log(`created: ${this.isLoggedIn}`);
+    // let difference = this.expiresAt - now;
+    // console.log(difference);
+    // console.log(`created: ${this.isLoggedIn}`);
     if (this.expiresAt - now < 3600 && this.isLoggedIn === true) {
       console.log('need to refresh');
       await this.refreshToken(this.refreshTokenValue);

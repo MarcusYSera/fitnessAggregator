@@ -17,7 +17,7 @@ export default {
 /* Refactor later to account for media queries  */
 /* https://www.smashingmagazine.com/2016/05/fluid-typography/ */
 html {
-  font-size: 2vw;
+  font-size: 1.25vw;
 }
 </style>
 <style scoped>
