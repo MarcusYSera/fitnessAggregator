@@ -118,7 +118,7 @@ export default {
   height: 100%;
   width: 100%;
   outline: 1px solid black;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(7, 1fr);
   grid-template-rows: 15%;
   /* grid-auto-flow: row; */
   grid-auto-rows: 16.67%;

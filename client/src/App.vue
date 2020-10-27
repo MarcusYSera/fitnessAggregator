@@ -1,7 +1,8 @@
 <template>
-  <div class="grid-container">
-    <Header class="grid-item-1"></Header>
-    <router-view class="grid-item-2"></router-view>
+  <div class="grid-container-app">
+    <Header class="appheader"></Header>
+    <router-view class="appbody"></router-view>
+    <footer>copyright sera-consulting</footer>
   </div>
 </template>
 
@@ -13,13 +14,22 @@ export default {
   components: { Header },
 };
 </script>
+
 <style>
 /* Refactor later to account for media queries  */
 /* https://www.smashingmagazine.com/2016/05/fluid-typography/ */
 html {
   font-size: 1.25vw;
 }
+body {
+  margin: 0;
+  height: 100vh;
+}
+#app {
+  height: 100%;
+}
 </style>
+
 <style scoped>
 * {
   margin: 0;
@@ -27,9 +37,14 @@ html {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.grid-container {
+.grid-container-app {
   display: grid;
-  grid-template-rows: 50px;
-  /* border: 1px solid black; */
+  height: 100%;
+  grid-template-rows: 1fr 8fr 1fr;
+  grid-template-areas: 'header' 'bodycontent' 'footer';
+  padding: 25px;
+}
+.appbody {
+  grid-area: bodycontent;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-container">
+  <header class="flex-container">
     <router-link to="/" class="flex-item item-1">
       <button>
         Home
@@ -10,17 +10,14 @@
         Strava
       </button>
     </router-link>
-  </div>
+  </header>
 </template>
 
 <style scoped>
 .flex-container {
   display: flex;
   justify-content: space-between;
-  /* align-content: flex-start; */
-}
-.flex-item {
-  margin: 10px;
+  align-items: center;
 }
 </style>
 

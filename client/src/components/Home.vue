@@ -1,43 +1,47 @@
 <template>
-  <div class="grid-container">
+  <div class="grid-container-home">
     <!-- Home -->
     <!-- .item{$}*10 -->
-    <div class="item">
-      <button v-on:click="getMessages">Get Messages from postgres</button>
-    </div>
-    <div class="item">
-      <button v-on:click="sendIdToken">Send info to db</button>
-    </div>
-    <div class="item">
-      <button v-on:click="getRefreshToken(idValue)">
-        Change refresh token
-      </button>
-    </div>
-    <div class="item">
-      <div v-for="(value, key) in displayMessages" v-bind:key="key.id">
-        {{ value.name }} {{ value.message }}
+    <div class="sidebar">
+      <div class="item">
+        <button v-on:click="getMessages">Get Messages from postgres</button>
+      </div>
+      <div class="item">
+        <button v-on:click="sendIdToken">Send info to db</button>
+      </div>
+      <div class="item">
+        <button v-on:click="getRefreshToken(idValue)">
+          Change refresh token
+        </button>
+      </div>
+      <div class="item">
+        <div v-for="(value, key) in displayMessages" v-bind:key="key.id">
+          {{ value.name }} {{ value.message }}
+        </div>
       </div>
     </div>
-    <div class="item">
+    <div class="homecontent">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore,
       veritatis.
     </div>
-    <div class="item">6</div>
-    <div class="item">7</div>
-    <div class="item">8</div>
-    <div class="item">9</div>
-    <div class="item">10</div>
   </div>
 </template>
 
 <style scoped>
-.grid-container {
+.grid-container-home {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
-  justify-items: center;
-  align-items: center;
+  grid-template-areas: 'sidenav homec homec homec' 'sidenav homec homec homec' 'sidenav homec homec homec' 'sidenav homec homec homec';
+}
+.sidebar {
+  grid-area: sidenav;
+  display: flex;
+  flex-direction: column;
+}
+.homecontent {
+  grid-area: homec;
 }
 </style>
 
