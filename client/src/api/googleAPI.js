@@ -5,10 +5,11 @@ export default {
     gapiPromise.then(() => {
       const gapi = window.gapi;
       if (!gapi) {
-        return;
+        return 'failed auth';
       }
       if (!gapi.auth) {
         console.log('gapi loaded, but not authorized yet, set up auth process');
+        return 'success';
       }
     });
   },

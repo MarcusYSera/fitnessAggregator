@@ -21,8 +21,8 @@
       </div>
     </div>
     <div class="homecontent">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore,
-      veritatis.
+      {{ googleSignedIn }}
+      <button v-on:click="getGSignedIn">Google sign in</button>
     </div>
   </div>
 </template>
@@ -48,26 +48,36 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import { gapiPromise } from '../api/gapi';
+// import { gapiPromise } from '../api/gapi';
 
 export default {
   name: 'Home',
   computed: {
-    ...mapGetters(['displayMessages', 'placeholder', 'idValue']),
+    ...mapGetters([
+      'displayMessages',
+      'placeholder',
+      'idValue',
+      'googleSignedIn',
+    ]),
   },
   methods: {
-    ...mapActions(['getMessages', 'sendIdToken', 'getRefreshToken']),
+    ...mapActions([
+      'getMessages',
+      'sendIdToken',
+      'getRefreshToken',
+      'getGSignedIn',
+    ]),
   },
-  created() {
-    gapiPromise.then(() => {
-      const gapi = window.gapi;
-      if (!gapi) {
-        return;
-      }
-      if (!gapi.auth) {
-        console.log('gapi loaded successfully, continue auth process');
-      }
-    });
-  },
+  // created() {
+  //   gapiPromise.then(() => {
+  //     const gapi = window.gapi;
+  //     if (!gapi) {
+  //       return;
+  //     }
+  //     if (!gapi.auth) {
+  //       console.log('gapi loaded successfully, continue auth process');
+  //     }
+  //   });
+  // },
 };
 </script>
