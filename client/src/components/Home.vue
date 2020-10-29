@@ -2,7 +2,7 @@
   <div class="grid-container-home">
     <!-- Home -->
     <!-- .item{$}*10 -->
-    <div class="sidebar">
+    <div class="flex-sidebar">
       <div class="item">
         <button v-on:click="getMessages">Get Messages from postgres</button>
       </div>
@@ -35,10 +35,11 @@
   grid-gap: 20px;
   grid-template-areas: 'sidenav homec homec homec' 'sidenav homec homec homec' 'sidenav homec homec homec' 'sidenav homec homec homec';
 }
-.sidebar {
+.flex-sidebar {
   grid-area: sidenav;
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 .homecontent {
   grid-area: homec;
@@ -61,7 +62,6 @@ export default {
     gapiPromise.then(() => {
       const gapi = window.gapi;
       if (!gapi) {
-        console.log('gapi failed to load');
         return;
       }
       if (!gapi.auth) {

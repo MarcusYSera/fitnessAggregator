@@ -42,7 +42,7 @@
   grid-template-areas:
     'header header'
     'table-one table-two';
-  padding: 10px;
+  /* padding: 10px; */
 }
 .nav {
   grid-area: header;
