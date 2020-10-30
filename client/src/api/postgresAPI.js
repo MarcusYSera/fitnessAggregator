@@ -34,7 +34,7 @@ export default {
       .get(`${POSTGRES_SERVER}/users/${id}`)
       .then(res => {
         console.log('res from getStravaRefreshTokenroute');
-        console.log(res);
+        // console.log(res);
         return res;
       })
       .catch(err => {
