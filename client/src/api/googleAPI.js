@@ -10,7 +10,7 @@ export default {
       if (!gapi.auth) {
         gapi.client
           .init({
-            apiKey: 'AIzaSyArIlQZWnUYfbZ-MDyKYi88wXobgcMawu8',
+            // apiKey: ,
             clientId:
               '701476865706-ebqg4cvt0d09pb6egr4b56054s1i2kbk.apps.googleusercontent.com',
             scope: 'https://www.googleapis.com/auth/fitness.activity.read',
