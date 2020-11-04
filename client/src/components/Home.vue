@@ -68,16 +68,17 @@ export default {
       'getGSignedIn',
     ]),
   },
-  // created() {
-  //   gapiPromise.then(() => {
-  //     const gapi = window.gapi;
-  //     if (!gapi) {
-  //       return;
-  //     }
-  //     if (!gapi.auth) {
-  //       console.log('gapi loaded successfully, continue auth process');
-  //     }
-  //   });
-  // },
+  created() {
+    this.getGSignedIn();
+    //   gapiPromise.then(() => {
+    //     const gapi = window.gapi;
+    //     if (!gapi) {
+    //       return;
+    //     }
+    //     if (!gapi.auth) {
+    //       console.log('gapi loaded successfully, continue auth process');
+    //     }
+    //   });
+  },
 };
 </script>

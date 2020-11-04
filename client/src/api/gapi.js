@@ -6,7 +6,7 @@ const accessScript = url => {
       let interval = setInterval(() => {
         if (!script.readyState || /loaded|complete/.test(script.readyState)) {
           clearInterval(interval);
-          console.log('gapi loaded');
+          // console.log('gapi loaded');
           res();
         }
       }, 100);

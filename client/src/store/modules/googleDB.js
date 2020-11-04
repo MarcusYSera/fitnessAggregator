@@ -2,7 +2,7 @@ import api from '../../api/googleAPI';
 // import router from '../../router';
 
 const state = {
-  gauth: null,
+  gauth: false,
 };
 
 const getters = {
@@ -12,7 +12,7 @@ const getters = {
 const actions = {
   getGSignedIn: ({ commit }) => {
     api.loadGapi();
-    commit('setGoogleSignedIn', 'hello');
+    commit('setGoogleSignedIn', true);
   },
 };
 
