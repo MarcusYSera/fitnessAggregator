@@ -22,7 +22,8 @@
     </div>
     <div class="homecontent">
       {{ googleSignedIn }}
-      <button v-on:click="getGSignedIn">Google sign in</button>
+      <button v-on:click="googleSignIn">Google sign in</button>
+      <button v-on:click="googleSignOut">Google sign out</button>
     </div>
   </div>
 </template>
@@ -65,20 +66,15 @@ export default {
       'getMessages',
       'sendIdToken',
       'getRefreshToken',
-      'getGSignedIn',
+      'googleSignIn',
+      'loadGapi',
+      'googleSignOut',
+      'isSignedIn',
     ]),
   },
   created() {
-    this.getGSignedIn();
-    //   gapiPromise.then(() => {
-    //     const gapi = window.gapi;
-    //     if (!gapi) {
-    //       return;
-    //     }
-    //     if (!gapi.auth) {
-    //       console.log('gapi loaded successfully, continue auth process');
-    //     }
-    //   });
+    this.loadGapi();
+    // this.isSignedIm();
   },
 };
 </script>

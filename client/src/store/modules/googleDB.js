@@ -10,9 +10,17 @@ const getters = {
 };
 
 const actions = {
-  getGSignedIn: ({ commit }) => {
+  loadGapi: () => {
     api.loadGapi();
-    commit('setGoogleSignedIn', true);
+  },
+  isSignedIn: ({ commit }) => {
+    commit('setGoogleSignIn', api.isSignedIn());
+  },
+  googleSignIn: () => {
+    api.signedIn();
+  },
+  googleSignOut: () => {
+    api.signOut();
   },
 };
 

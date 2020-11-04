@@ -37,7 +37,28 @@ export default {
           // return 'success';
         });
       }
-      return 'hello';
+      // return 'hello';
     });
+  },
+  isSignedIn() {
+    const gapi = window.gapi;
+    console.log('clicked');
+    return gapi.auth2.getAuthInstance().isSignedIn.get();
+  },
+  signedIn() {
+    const gapi = window.gapi;
+    let gAuth = gapi.auth2.getAuthInstance().isSignedIn.get();
+    if (!gAuth) {
+      gapi.auth2.getAuthInstance().signIn();
+    }
+    return gapi.auth2.getAuthInstance().isSignedIn.get();
+  },
+  signOut() {
+    const gapi = window.gapi;
+    let gAuth = gapi.auth2.getAuthInstance().isSignedIn.get();
+    if (gAuth) {
+      gapi.auth2.getAuthInstance().signOut();
+    }
+    return gapi.auth2.getAuthInstance().isSignedIn.get();
   },
 };
