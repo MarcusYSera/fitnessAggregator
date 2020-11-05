@@ -22,9 +22,10 @@
     </div>
     <div class="homecontent">
       {{ googleSignedIn }}
-      <button v-on:click="googleSignIn">Google sign in</button>
-      <button v-on:click="googleSignOut">Google sign out</button>
-      <button v-on:click="isSignedIn">signed In?</button>
+      <button v-if="!googleSignedIn" v-on:click="googleSignIn">
+        Google sign in
+      </button>
+      <button v-else v-on:click="googleSignOut">Google sign out</button>
     </div>
   </div>
 </template>
@@ -67,10 +68,9 @@ export default {
       'getMessages',
       'sendIdToken',
       'getRefreshToken',
-      'googleSignIn',
       'loadGapi',
+      'googleSignIn',
       'googleSignOut',
-      'isSignedIn',
     ]),
   },
   created() {

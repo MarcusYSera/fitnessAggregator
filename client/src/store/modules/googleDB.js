@@ -10,18 +10,21 @@ const getters = {
 };
 
 const actions = {
-  loadGapi: () => {
-    api.loadGapi();
+  loadGapi: async () => {
+    let response = api.loadGapi();
+    console.log(await response);
   },
   googleSignIn: async ({ commit }) => {
-    let response = await api.signedIn();
-    commit('setGoogleSignedIn', response);
-    window.localStorage.setItem('googleSignIn', response);
+    let response = api.signedIn();
+    console.log(await response);
+    commit('setGoogleSignedIn', await response);
+    window.localStorage.setItem('googleSignIn', await response);
   },
   googleSignOut: async ({ commit }) => {
-    let response = await api.signOut();
-    commit('setGoogleSignedIn', response);
-    window.localStorage.setItem('googleSignIn', response);
+    let response = api.signOut();
+    console.log(await response);
+    commit('setGoogleSignedIn', await response);
+    window.localStorage.setItem('googleSignIn', await response);
   },
 };
 
