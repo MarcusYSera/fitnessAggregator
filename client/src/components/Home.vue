@@ -24,6 +24,7 @@
       {{ googleSignedIn }}
       <button v-on:click="googleSignIn">Google sign in</button>
       <button v-on:click="googleSignOut">Google sign out</button>
+      <button v-on:click="isSignedIn">signed In?</button>
     </div>
   </div>
 </template>

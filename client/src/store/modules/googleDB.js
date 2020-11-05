@@ -2,7 +2,7 @@ import api from '../../api/googleAPI';
 // import router from '../../router';
 
 const state = {
-  gauth: false,
+  gauth: window.localStorage.getItem('googleSignIn'),
 };
 
 const getters = {
@@ -13,14 +13,15 @@ const actions = {
   loadGapi: () => {
     api.loadGapi();
   },
-  isSignedIn: ({ commit }) => {
-    commit('setGoogleSignIn', api.isSignedIn());
+  googleSignIn: async ({ commit }) => {
+    let response = await api.signedIn();
+    commit('setGoogleSignedIn', response);
+    window.localStorage.setItem('googleSignIn', response);
   },
-  googleSignIn: () => {
-    api.signedIn();
-  },
-  googleSignOut: () => {
-    api.signOut();
+  googleSignOut: async ({ commit }) => {
+    let response = await api.signOut();
+    commit('setGoogleSignedIn', response);
+    window.localStorage.setItem('googleSignIn', response);
   },
 };
 
