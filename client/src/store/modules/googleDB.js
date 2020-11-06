@@ -10,9 +10,13 @@ const getters = {
 };
 
 const actions = {
-  loadGapi: async () => {
-    let response = api.loadGapi();
-    console.log(await response);
+  loadGapi: () => {
+    api.loadGapi();
+  },
+  loadStatus: async ({ commit }) => {
+    // const gapi = window.gapi;
+    let status = await window.gapi.auth2.getAuthInstance().isSignedIn.get();
+    commit('setGoogleSignedIn', await status);
   },
   googleSignIn: async ({ commit }) => {
     let response = api.signedIn();

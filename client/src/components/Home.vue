@@ -71,10 +71,12 @@ export default {
       'loadGapi',
       'googleSignIn',
       'googleSignOut',
+      'loadStatus',
     ]),
   },
   created() {
     this.loadGapi();
+    // this.loadStatus();
     // this.isSignedIm();
   },
 };
