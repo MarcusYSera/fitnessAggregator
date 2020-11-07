@@ -8,10 +8,17 @@
 
 <script>
 import Header from './components/Header';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
   components: { Header },
+  methods: {
+    ...mapActions(['loadGapi']),
+  },
+  // async created() {
+  //   await this.loadGapi();
+  // },
 };
 </script>
 

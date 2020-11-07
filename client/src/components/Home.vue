@@ -69,15 +69,15 @@ export default {
       'sendIdToken',
       'getRefreshToken',
       'loadGapi',
+      'loadStatus',
       'googleSignIn',
       'googleSignOut',
       'loadStatus',
     ]),
   },
-  created() {
-    this.loadGapi();
-    // this.loadStatus();
-    // this.isSignedIm();
+  async created() {
+    await this.loadGapi();
+    // await this.loadStatus();
   },
 };
 </script>

@@ -12,11 +12,12 @@ const getters = {
 const actions = {
   loadGapi: () => {
     api.loadGapi();
+    console.log('gapi');
   },
-  loadStatus: async ({ commit }) => {
-    // const gapi = window.gapi;
-    let status = await window.gapi.auth2.getAuthInstance().isSignedIn.get();
-    commit('setGoogleSignedIn', await status);
+  loadStatus: () => {
+    console.log('load status');
+    api.checkStatus();
+    // commit('setGoogleSignedIn', await status);
   },
   googleSignIn: async ({ commit }) => {
     let response = api.signedIn();
