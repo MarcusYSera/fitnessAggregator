@@ -14,15 +14,10 @@ export default {
       clientId: `${process.env.VUE_APP_GOOGLE_CLIENT_ID}`,
       scope: 'https://www.googleapis.com/auth/fitness.activity.read',
     });
-    console.log(gapi.auth2.getAuthInstance().isSignedIn.get());
   },
-  checkStatus() {
+  async signedIn() {
     const gapi = window.gapi;
-    console.log(gapi.auth2.getAuthInstance().isSignedIn.get());
-  },
-  signedIn() {
-    const gapi = window.gapi;
-    gapi.auth2.getAuthInstance().signIn();
+    await gapi.auth2.getAuthInstance().signIn();
     return true;
   },
   signOut() {

@@ -21,7 +21,6 @@
       </div>
     </div>
     <div class="homecontent">
-      {{ googleSignedIn }}
       <button v-if="!googleSignedIn" v-on:click="googleSignIn">
         Google sign in
       </button>
@@ -77,7 +76,6 @@ export default {
   },
   async created() {
     await this.loadGapi();
-    // await this.loadStatus();
   },
 };
 </script>

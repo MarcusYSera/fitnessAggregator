@@ -10,26 +10,24 @@ const getters = {
 };
 
 const actions = {
-  loadGapi: () => {
-    api.loadGapi();
+  loadGapi: async ({ commit }) => {
+    await api.loadGapi();
     console.log('gapi');
-  },
-  loadStatus: () => {
-    console.log('load status');
-    api.checkStatus();
-    // commit('setGoogleSignedIn', await status);
+    const status = window.gapi.auth2.getAuthInstance().isSignedIn.get();
+    commit('setGoogleSignedIn', status);
+    window.localStorage.setItem('googleSignIn', status);
   },
   googleSignIn: async ({ commit }) => {
-    let response = api.signedIn();
-    console.log(await response);
-    commit('setGoogleSignedIn', await response);
-    window.localStorage.setItem('googleSignIn', await response);
+    await api.signedIn();
+    if (window.gapi.auth2.getAuthInstance().isSignedIn.get() === true) {
+      commit('setGoogleSignedIn', true);
+      window.localStorage.setItem('googleSignIn', true);
+    }
   },
-  googleSignOut: async ({ commit }) => {
-    let response = api.signOut();
-    console.log(await response);
-    commit('setGoogleSignedIn', await response);
-    window.localStorage.setItem('googleSignIn', await response);
+  googleSignOut: ({ commit }) => {
+    api.signOut();
+    commit('setGoogleSignedIn', false);
+    window.localStorage.setItem('googleSignIn', false);
   },
 };
 
