@@ -5,7 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>mask.svg" />
-    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+      const gapiPromise = new Promise((res, rej) => {
+        window.gapiLoaded = res;
+        window.gapiLoadError = rej;
+      });
+    </script>
+    <script
+      async
+      defer
+      src="https://apis.google.com/js/api.js"
+      onload="window.gapiLoaded()"
+      onerror="window.gapiLoadError(event)"
+    ></script>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
