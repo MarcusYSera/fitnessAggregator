@@ -2,12 +2,15 @@
   <div class="grid-container">
     <article class="flex-container column">
       <!-- <div class="sign-in"> -->
-      <h3>
-        Sign In
-      </h3>
-      <form>
-        <label class="item">Email</label>
-        <label class="item">Password</label>
+      <form class="flex-container column" @submit.prevent="onSubmit">
+        <h3>
+          Sign In
+        </h3>
+        <label class="item" for="email">Email</label>
+        <input type="text" v-model="email" />
+        <label class="item" for="password">Password</label>
+        <input type="password" v-model="password" />
+        <input type="submit" value="Sign In" />
       </form>
       <br />
       <div>Or sign in with</div>
@@ -35,5 +38,19 @@
 </style>
 
 <script>
-export default { name: 'SignIn' };
+export default {
+  name: 'SignIn',
+  data() {
+    return { email: '', password: '' };
+  },
+  methods: {
+    onSubmit() {
+      let user = { email: this.email, password: this.password };
+      console.log(user);
+      // this.$emit('user-submitted', user);
+      this.email = '';
+      this.password = '';
+    },
+  },
+};
 </script>
