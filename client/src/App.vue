@@ -35,6 +35,18 @@ body {
 #app {
   height: 100%;
 }
+.grid-container {
+  display: grid;
+}
+.flex-container {
+  display: flex;
+}
+.row {
+  flex-direction: row;
+}
+.column {
+  flex-direction: column;
+}
 </style>
 
 <style scoped>

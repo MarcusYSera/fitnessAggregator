@@ -10,6 +10,11 @@
         Strava
       </button>
     </router-link>
+    <router-link to="/signin" class="flex-item item-2">
+      <button>
+        Sign In
+      </button>
+    </router-link>
   </header>
 </template>
 
