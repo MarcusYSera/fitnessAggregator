@@ -1,23 +1,33 @@
 <template>
   <div class="grid-container">
-    <article class="flex-container column">
-      <!-- <div class="sign-in"> -->
-      <form class="flex-container column" @submit.prevent="onSubmit">
-        <h3>
-          Sign In
-        </h3>
-        <label class="item" for="email">Email</label>
-        <input type="text" v-model="email" />
-        <label class="item" for="password">Password</label>
-        <input type="password" v-model="password" />
-        <input type="submit" value="Sign In" />
-      </form>
-      <br />
-      <div>Or sign in with</div>
-      <br />
-      <div class="item">Google Sign In</div>
-      <!-- </div> -->
-    </article>
+    <!-- <article class="flex-container column"> -->
+    <!-- <div class="sign-in"> -->
+    <form class="flex-container column" @submit.prevent="onSubmit">
+      <h2>
+        Sign In
+      </h2>
+      <input
+        class="item form-field"
+        type="text"
+        v-model="email"
+        placeholder="email"
+      />
+      <input
+        class="item form-field"
+        type="password"
+        v-model="password"
+        placeholder="password"
+      />
+      <input class="item sign-in-button" type="submit" value="Sign In" />
+    </form>
+    <hr class="line" />
+    <div>
+      <button class="sign-in-button">
+        Google Sign In
+      </button>
+    </div>
+    <!-- </div> -->
+    <!-- </article> -->
   </div>
 </template>
 
@@ -32,8 +42,33 @@
   /* text-align: left; */
   outline: 1px black solid;
   padding: 20px;
-  min-height: 40vh;
-  min-width: 40vh;
+  min-height: 30vh;
+  min-width: 30vh;
+}
+.item {
+  margin-top: 4%;
+}
+.sign-in-button,
+.form-field {
+  width: 100%;
+  height: 4vh;
+}
+.line {
+  border: none;
+  border-top: 3px double #333;
+  color: #333;
+  overflow: visible;
+  text-align: center;
+  width: 100%;
+  min-height: 1rem;
+  margin-top: 1.5rem;
+}
+.line:after {
+  background: #fff;
+  content: 'Or Sign In With';
+  padding: 0 0.65rem;
+  position: relative;
+  top: -0.75rem;
 }
 </style>
 
