@@ -4,6 +4,20 @@ import axios from 'axios';
 const POSTGRES_SERVER = 'http://localhost:3000/v1';
 
 export default {
+  async createUser(email, password) {
+    let res = await axios
+      .post(`${POSTGRES_SERVER}/user`, {
+        email: `${email}`,
+        password: `${password}`,
+      })
+      .then(res => {
+        return res;
+      })
+      .catch(err => {
+        return err;
+      });
+    return res;
+  },
   async getMessagesPostgres() {
     let res = await axios
       .get(`${POSTGRES_SERVER}/messages`)
