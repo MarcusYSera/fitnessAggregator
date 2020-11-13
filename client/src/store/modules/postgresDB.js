@@ -2,18 +2,24 @@ import api from '../../api/postgresAPI';
 // import router from '../../router';
 
 const state = {
+  user: null,
   messages: null,
   stravaRefreshToken: null,
   placeholder: null,
 };
 
 const getters = {
+  user: state => state.user,
   displayMessages: state => state.messages,
   stravaRefreshToken: state => state.stravaRefreshToken,
   placeholder: state => state.placeholder,
 };
 
 const actions = {
+  createUser: ({ commit }, newUser) => {
+    console.log(newUser);
+    commit('setNewUser', newUser);
+  },
   getMessages: ({ commit }) => {
     api.getMessagesPostgres().then(res => {
       let { messages } = res.data;
@@ -49,6 +55,9 @@ const actions = {
 };
 
 const mutations = {
+  setNewUser: (state, newUser) => {
+    state.user = newUser;
+  },
   setMessagesMutation: (state, messages) => {
     state.messages = messages;
   },
