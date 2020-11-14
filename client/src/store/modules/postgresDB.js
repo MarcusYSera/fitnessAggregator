@@ -16,9 +16,9 @@ const getters = {
 };
 
 const actions = {
-  createUser: ({ commit }, newUser) => {
-    console.log(newUser);
-    commit('setNewUser', newUser);
+  createUser: ({ commit }, newUserArr) => {
+    console.log(newUserArr);
+    commit('setNewUser', newUserArr);
   },
   getMessages: ({ commit }) => {
     api.getMessagesPostgres().then(res => {

@@ -33,43 +33,6 @@
   </div>
 </template>
 
-<style scoped>
-.grid-container-strava {
-  display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 0.25fr 1fr;
-  grid-template-areas:
-    'header header'
-    'table-one table-two';
-  /* padding: 10px; */
-}
-.nav {
-  grid-area: header;
-}
-.table-one {
-  grid-area: table-one;
-}
-.table-two {
-  grid-area: table-two;
-}
-
-.flex-container {
-  display: flex;
-}
-.flex-container.one {
-  justify-content: center;
-  align-items: center;
-}
-.flex-container.two {
-  justify-content: flex-end;
-  align-content: center;
-}
-.flex-container.three {
-  justify-content: center;
-}
-</style>
-
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import AthleteActivityTable from './AthleteActivityTable';
@@ -129,3 +92,40 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.grid-container-strava {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.25fr 1fr;
+  grid-template-areas:
+    'header header'
+    'table-one table-two';
+  /* padding: 10px; */
+}
+.nav {
+  grid-area: header;
+}
+.table-one {
+  grid-area: table-one;
+}
+.table-two {
+  grid-area: table-two;
+}
+
+.flex-container {
+  display: flex;
+}
+.flex-container.one {
+  justify-content: center;
+  align-items: center;
+}
+.flex-container.two {
+  justify-content: flex-end;
+  align-content: center;
+}
+.flex-container.three {
+  justify-content: center;
+}
+</style>

@@ -73,12 +73,14 @@
 </style>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   name: 'SignIn',
   data() {
     return { email: '', password: '' };
   },
   methods: {
+    ...mapActions(['createUser']),
     onSubmit() {
       let user = { email: this.email, password: this.password };
       console.log(user);
